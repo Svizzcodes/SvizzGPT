@@ -10,7 +10,7 @@ router = APIRouter(prefix="/api/files", tags=["Files"])
 
 MAX_FILE_SIZE = 25 * 1024 * 1024 # 25MB max
 
-UPLOAD_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "uploads"
+UPLOAD_DIR = Path("/tmp/uploads") if os.environ.get("VERCEL") else Path(__file__).resolve().parent.parent.parent / "data" / "uploads"
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {

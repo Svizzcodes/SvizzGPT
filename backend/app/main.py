@@ -52,7 +52,7 @@ app.include_router(settings_router.router)
 app.include_router(usage.router)
 
 # Static file downloads
-UPLOAD_DIR = Path(__file__).resolve().parent.parent / "data" / "uploads"
+UPLOAD_DIR = Path("/tmp/uploads") if os.environ.get("VERCEL") else Path(__file__).resolve().parent.parent / "data" / "uploads"
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 @app.get("/api/files/download/{filename}")

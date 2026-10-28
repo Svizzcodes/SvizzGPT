@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     OPENAI_FAST_MODEL: str = "qwen/qwen3.8-27b"
     OPENAI_IMAGE_MODEL: str = "dall-e-3"
     
-    DATABASE_URL: str = f"sqlite:///{ROOT_DIR / 'svizzgpt.db'}"
+    DATABASE_URL: str = f"sqlite:////tmp/svizzgpt.db" if os.environ.get("VERCEL") else f"sqlite:///{ROOT_DIR / 'svizzgpt.db'}"
     
     PORT: int = 8000
     HOST: str = "0.0.0.0"
